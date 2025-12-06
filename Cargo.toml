@@ -1,0 +1,56 @@
+[workspace]
+members = [
+    "poneglyphdb-core",
+    "poneglyphdb-host",
+    "poneglyphdb-client",
+    "poneglyphdb-cli",
+]
+
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["PoneglyphDB Contributors"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/yourusername/poneglyphdb"
+description = "Efficient Non-interactive Zero-Knowledge Proofs for Arbitrary SQL-Query Verification"
+
+[workspace.dependencies]
+# ZKP Libraries
+halo2 = { version = "0.1.0-beta.2", package = "halo2_proofs" }
+
+# Database
+sqlx = { version = "0.7", features = ["postgres", "runtime-tokio-rustls"] }
+
+# Web Framework
+axum = "0.7"
+tokio = { version = "1.35", features = ["full"] }
+
+# SQL Parser
+sqlparser = "0.39"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error Handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# HTTP Client
+reqwest = { version = "0.11", features = ["json"] }
+
+# CLI
+clap = { version = "4.4", features = ["derive"] }
+
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+

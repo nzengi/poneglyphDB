@@ -1,0 +1,22 @@
+[package]
+name = "poneglyphdb-cli"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description.workspace = true
+
+[[bin]]
+name = "poneglyphdb-cli"
+path = "src/main.rs"
+
+[dependencies]
+poneglyphdb-core = { path = "../poneglyphdb-core" }
+poneglyphdb-client = { path = "../poneglyphdb-client" }
+clap = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+tokio = { workspace = true, features = ["full"] }
+

@@ -1,0 +1,48 @@
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+/project_info
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.o
+*.so
+*.dylib
+*.dll
+
+# Test artifacts
+*.test
+*.profdata
+
+# Documentation
+/doc/
+
+# Environment
+.env
+.env.local
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+
