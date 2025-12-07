@@ -1,0 +1,29 @@
+# CODEOWNERS file for PoneglyphDB
+# This file defines who must review changes to specific parts of the codebase
+
+# Global default owner
+* @nzengi
+
+# Core ZKP implementation - requires expert review
+/poneglyphdb-core/src/zkp/ @nzengi
+/poneglyphdb-core/src/circuit/ @nzengi
+/poneglyphdb-core/src/witness/ @nzengi
+
+# Security-critical files
+/.github/workflows/ @nzengi
+/Cargo.toml @nzengi
+/poneglyphdb-core/Cargo.toml @nzengi
+
+# Documentation
+/README.md @nzengi
+/docs/ @nzengi
+/SETUP.md @nzengi
+/CONTRIBUTING.md @nzengi
+
+# Configuration files
+/.github/ @nzengi
+/.cargo/ @nzengi
+/.rustfmt.toml @nzengi
+/.clippy.toml @nzengi
+/rust-toolchain.toml @nzengi
+
