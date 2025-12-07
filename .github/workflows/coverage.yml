@@ -37,7 +37,7 @@ jobs:
         run: cargo tarpaulin --workspace --all-features --out Xml --output-dir coverage/ || exit 0
 
       - name: Upload to codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           files: ./coverage/cobertura.xml
           flags: unittests
