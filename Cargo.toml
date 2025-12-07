@@ -21,7 +21,7 @@ description = "Efficient Non-interactive Zero-Knowledge Proofs for Arbitrary SQL
 halo2 = { version = "0.1.0-beta.2", package = "halo2_proofs" }
 
 # Database
-sqlx = { version = "0.7", features = ["postgres", "runtime-tokio-rustls"] }
+sqlx = { version = "0.8", features = ["postgres", "runtime-tokio-rustls"] }
 
 # Web Framework
 axum = "0.7"
