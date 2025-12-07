@@ -28,7 +28,7 @@ axum = "0.7"
 tokio = { version = "1.35", features = ["full"] }
 
 # SQL Parser
-sqlparser = "0.39"
+sqlparser = "0.60"
 
 # Serialization
 serde = { version = "1.0", features = ["derive"] }
