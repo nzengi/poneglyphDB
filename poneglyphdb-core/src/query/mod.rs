@@ -6,5 +6,4 @@ pub mod parser;
 pub mod types;
 
 pub use parser::QueryParser;
-pub use types::*;
-
+// types module will be used when types are implemented

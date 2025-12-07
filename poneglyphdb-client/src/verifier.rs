@@ -12,3 +12,8 @@ impl ClientVerifier {
     }
 }
 
+impl Default for ClientVerifier {
+    fn default() -> Self {
+        Self::new()
+    }
+}

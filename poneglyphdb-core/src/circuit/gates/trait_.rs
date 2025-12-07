@@ -10,4 +10,3 @@ pub trait CustomGate {
     /// Get the degree of the constraint polynomial
     fn degree(&self) -> usize;
 }
-

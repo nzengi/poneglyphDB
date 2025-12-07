@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+# Run cargo fmt
+echo "Running cargo fmt..."
+cargo fmt --all -- --check || {
+    echo "Code is not formatted. Running cargo fmt..."
+    cargo fmt --all
+    echo "Please review the changes and commit again."
+    exit 1
+}
+
+# Run cargo clippy
+echo "Running cargo clippy..."
+cargo clippy --workspace --all-features -- -D warnings || {
+    echo "Clippy found issues. Please fix them before committing."
+    exit 1
+}
+
+# Run tests
+echo "Running tests..."
+cargo test --workspace --all-features --quiet || {
+    echo "Tests failed. Please fix them before committing."
+    exit 1
+}
+
+echo "Pre-commit checks passed!"

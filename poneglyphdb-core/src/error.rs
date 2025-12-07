@@ -29,4 +29,3 @@ pub enum Error {
     #[error("Serialization error: {0}")]
     Serialization(String),
 }
-

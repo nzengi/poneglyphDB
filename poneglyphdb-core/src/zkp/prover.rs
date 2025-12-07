@@ -1,7 +1,5 @@
 //! Proof generation (PLONKish) (Makale 3.3.3)
 
-use crate::error::Result;
-
 /// Prover for generating ZKP proofs
 pub struct Prover {
     // TODO: Implement prover
@@ -14,3 +12,8 @@ impl Prover {
     }
 }
 
+impl Default for Prover {
+    fn default() -> Self {
+        Self::new()
+    }
+}

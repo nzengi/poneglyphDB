@@ -32,6 +32,96 @@ This implementation is based on PLONKish-based arithmetic circuits, custom gate 
 - Parallel witness computation and batch operations
 - Query-specific optimizations (index-based, predicate pushdown)
 
+## Getting Started
+
+### Prerequisites
+
+- Rust 1.70 or later (managed via `rust-toolchain.toml`)
+- PostgreSQL (for database integration)
+- Git
+
+### Building from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/poneglyphdb.git
+cd poneglyphdb
+
+# Install git hooks (optional but recommended)
+make install-hooks
+# or
+cargo husky install
+
+# Build all workspace crates
+cargo build --release
+# or
+make release
+
+# Run the test suite
+cargo test
+# or
+make test
+
+# Run benchmarks
+cargo bench
+# or
+make bench
+
+# Generate code coverage
+make coverage
+
+# Check code quality
+make check
+```
+
+### Quick Commands
+
+We provide a `Makefile` with common development tasks:
+
+```bash
+make help          # Show all available commands
+make install-hooks # Install git pre-commit hooks
+make test          # Run all tests
+make fmt           # Format code
+make clippy        # Run clippy linter
+make check         # Run all checks (fmt, clippy, test)
+make coverage      # Generate code coverage report
+make bench         # Run benchmarks
+make docs          # Build and open documentation
+make ci            # Run CI checks locally
+```
+
+### Git Hooks
+
+Pre-commit hooks automatically run:
+
+- Code formatting check
+- Clippy linting
+- Test suite
+
+Install hooks:
+
+```bash
+make install-hooks
+```
+
+### Code Coverage
+
+Code coverage is tracked via Codecov. View coverage reports in:
+
+- GitHub Actions artifacts
+- Codecov dashboard (when configured)
+
+### Performance Tracking
+
+Benchmark results are tracked over time using `criterion-trend`. Results are uploaded as GitHub Actions artifacts.
+
+### Documentation
+
+- API documentation: `cargo doc --open`
+- Online: [docs.rs/poneglyphdb-core](https://docs.rs/poneglyphdb-core) (when published)
+- Local: `make docs`
+
 ## Security Considerations
 
 - **Trusted Setup**: The system requires a one-time trusted setup ceremony to generate public parameters. The setup is transparent and can be audited.
@@ -42,7 +132,7 @@ This implementation is based on PLONKish-based arithmetic circuits, custom gate 
 
 ## Contributing
 
-Contributions are welcome! Please read our contributing guidelines and code of conduct before submitting pull requests.
+Contributions are welcome! Please read our [contributing guidelines](CONTRIBUTING.md) and code of conduct before submitting pull requests.
 
 ## Citation
 

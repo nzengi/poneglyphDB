@@ -6,6 +6,10 @@ authors.workspace = true
 license.workspace = true
 repository.workspace = true
 description.workspace = true
+documentation = "https://docs.rs/poneglyphdb-client"
+homepage = "https://github.com/yourusername/poneglyphdb"
+keywords = ["zkp", "zero-knowledge", "sql", "client", "verification"]
+categories = ["cryptography", "database", "web-programming"]
 
 [dependencies]
 poneglyphdb-core = { path = "../poneglyphdb-core" }
@@ -15,3 +19,6 @@ serde_json = { workspace = true }
 anyhow = { workspace = true }
 tokio = { workspace = true, features = ["rt-multi-thread"] }
 
+[features]
+default = []
+full = []

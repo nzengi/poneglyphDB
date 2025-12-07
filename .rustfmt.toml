@@ -4,3 +4,16 @@ tab_spaces = 4
 newline_style = "Unix"
 use_small_heuristics = "Default"
 
+# Formatting options (stable features only)
+chain_width = 80
+reorder_imports = true
+reorder_modules = true
+
+# Note: The following options require nightly Rust:
+# wrap_comments = true
+# format_code_in_doc_comments = true
+# format_strings = true
+# imports_granularity = "Crate"
+# group_imports = "StdExternalCrate"
+# reorder_impl_items = true
+

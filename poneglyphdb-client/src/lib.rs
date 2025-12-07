@@ -9,4 +9,3 @@ pub mod verifier;
 pub use client::Client;
 pub use query_builder::QueryBuilder;
 pub use verifier::ClientVerifier;
-

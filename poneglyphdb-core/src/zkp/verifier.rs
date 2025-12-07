@@ -1,7 +1,5 @@
 //! Proof verification
 
-use crate::error::Result;
-
 /// Verifier for verifying ZKP proofs
 pub struct Verifier {
     // TODO: Implement verifier
@@ -14,3 +12,8 @@ impl Verifier {
     }
 }
 
+impl Default for Verifier {
+    fn default() -> Self {
+        Self::new()
+    }
+}

@@ -11,4 +11,3 @@ pub type GateId = usize;
 
 /// Constraint identifier
 pub type ConstraintId = usize;
-

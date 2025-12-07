@@ -12,3 +12,8 @@ impl QueryBuilder {
     }
 }
 
+impl Default for QueryBuilder {
+    fn default() -> Self {
+        Self::new()
+    }
+}

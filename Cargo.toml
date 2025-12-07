@@ -13,7 +13,7 @@ version = "0.1.0"
 edition = "2021"
 authors = ["PoneglyphDB Contributors"]
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/yourusername/poneglyphdb"
+repository = "https://github.com/nzengi/poneglyphDB"
 description = "Efficient Non-interactive Zero-Knowledge Proofs for Arbitrary SQL-Query Verification"
 
 [workspace.dependencies]
@@ -49,8 +49,25 @@ reqwest = { version = "0.11", features = ["json"] }
 clap = { version = "4.4", features = ["derive"] }
 
 
+[profile.dev]
+opt-level = 0
+debug = true
+split-debuginfo = "unpacked"
+incremental = true
+
 [profile.release]
 opt-level = 3
 lto = true
 codegen-units = 1
+strip = true
+debug = false
+
+[profile.bench]
+opt-level = 3
+lto = true
+codegen-units = 1
+debug = false
+
+# Note: Dev dependencies should be in individual crate Cargo.toml files
+# or use cargo install for tools like cargo-tarpaulin, criterion-trend
 

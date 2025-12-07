@@ -1,0 +1,7 @@
+# Clippy linter configuration
+# Note: Clippy configuration is typically done via Cargo.toml or command-line flags
+# This file is for reference. Actual configuration is in Cargo.toml or via clippy.toml in Rust 1.74+
+
+# For now, use command-line flags:
+# cargo clippy -- -W clippy::all -A clippy::too_many_arguments -A clippy::type_complexity -D missing_docs -D unsafe_code
+

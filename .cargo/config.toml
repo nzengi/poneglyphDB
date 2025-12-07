@@ -1,0 +1,23 @@
+# Cargo configuration
+
+[build]
+# Use all available CPU cores (0 means auto-detect)
+# jobs = 0  # Commented out - Cargo auto-detects by default
+
+[net]
+# Use Git CLI instead of libgit2 for better compatibility
+git-fetch-with-cli = true
+
+[registries.crates-io]
+protocol = "sparse"
+
+# Documentation configuration for docs.rs
+[doc]
+# Include private items in documentation
+document-private-items = false
+
+# Benchmark configuration
+[bench]
+# Use criterion for benchmarks
+harness = false
+

@@ -10,4 +10,3 @@ pub mod witness;
 pub mod zkp;
 
 pub use error::{Error, Result};
-

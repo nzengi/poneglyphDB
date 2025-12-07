@@ -1,7 +1,5 @@
 //! Client SDK
 
-use anyhow::Result;
-
 /// Client for interacting with PoneglyphDB host
 pub struct Client {
     // TODO: Implement client
@@ -13,4 +11,3 @@ impl Client {
         Self {}
     }
 }
-

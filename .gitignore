@@ -1,10 +1,13 @@
 # Rust
 target/
-Cargo.lock
 **/*.rs.bk
 *.pdb
 
 /project_info
+
+# Cargo
+Cargo.lock  # For libraries, but we keep it for workspace
+# Remove the line above if this is a library crate
 
 # IDE
 .idea/
@@ -12,37 +15,73 @@ Cargo.lock
 *.swp
 *.swo
 *~
+.project
+.classpath
+.settings/
 
 # OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+Desktop.ini
 
 # Build artifacts
 *.o
 *.so
 *.dylib
 *.dll
+*.exe
+*.dSYM/
 
 # Test artifacts
 *.test
 *.profdata
+coverage/
+*.gcda
+*.gcno
 
 # Documentation
 /doc/
+docs/book/
 
 # Environment
 .env
 .env.local
+.env.*.local
 
 # Database
 *.db
 *.sqlite
 *.sqlite3
+*.sql
 
 # Logs
 *.log
+logs/
 
 # Temporary files
 tmp/
 temp/
+*.tmp
+*.bak
+*.swp
+
+# ZKP specific
+*.srs
+*.pk
+*.vk
+proofs/
+witnesses/
+
+# Benchmark results
+criterion/
+bench_results/
+
+# Profiling
+perf.data*
+flamegraph.svg
 

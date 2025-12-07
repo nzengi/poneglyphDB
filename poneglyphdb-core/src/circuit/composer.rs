@@ -1,7 +1,5 @@
 //! Circuit composition
 
-use crate::error::Result;
-
 /// Circuit composer
 pub struct CircuitComposer {
     // TODO: Implement circuit composer
@@ -14,3 +12,8 @@ impl CircuitComposer {
     }
 }
 
+impl Default for CircuitComposer {
+    fn default() -> Self {
+        Self::new()
+    }
+}

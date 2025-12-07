@@ -1,7 +1,5 @@
 //! Circuit optimization (Polynomial degree reduction)
 
-use crate::error::Result;
-
 /// Circuit optimizer
 pub struct CircuitOptimizer {
     // TODO: Implement circuit optimizer
@@ -14,3 +12,8 @@ impl CircuitOptimizer {
     }
 }
 
+impl Default for CircuitOptimizer {
+    fn default() -> Self {
+        Self::new()
+    }
+}

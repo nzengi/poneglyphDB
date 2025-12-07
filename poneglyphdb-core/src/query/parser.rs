@@ -1,7 +1,5 @@
 //! SQL parser (sqlparser-rs)
 
-use crate::error::Result;
-
 /// Query parser
 pub struct QueryParser {
     // TODO: Implement query parser
@@ -14,3 +12,8 @@ impl QueryParser {
     }
 }
 
+impl Default for QueryParser {
+    fn default() -> Self {
+        Self::new()
+    }
+}

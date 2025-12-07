@@ -1,7 +1,5 @@
 //! Witness extraction from database
 
-use crate::error::Result;
-
 /// Witness extractor
 pub struct WitnessExtractor {
     // TODO: Implement witness extractor
@@ -14,3 +12,8 @@ impl WitnessExtractor {
     }
 }
 
+impl Default for WitnessExtractor {
+    fn default() -> Self {
+        Self::new()
+    }
+}

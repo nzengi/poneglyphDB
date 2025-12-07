@@ -6,6 +6,10 @@ authors.workspace = true
 license.workspace = true
 repository.workspace = true
 description.workspace = true
+documentation = "https://docs.rs/poneglyphdb-core"
+homepage = "https://github.com/yourusername/poneglyphdb"
+keywords = ["zkp", "zero-knowledge", "sql", "database", "proof", "verification"]
+categories = ["cryptography", "database", "algorithms"]
 
 [dependencies]
 halo2 = { workspace = true }
@@ -18,3 +22,13 @@ anyhow = { workspace = true }
 tracing = { workspace = true }
 tokio = { workspace = true, features = ["rt-multi-thread"] }
 
+[features]
+default = []
+# Enable all optimizations
+full = []
+# Enable experimental features
+experimental = []
+
+[lib]
+# Documentation configuration
+doctest = true

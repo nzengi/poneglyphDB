@@ -6,4 +6,3 @@ fn main() {
     println!("PoneglyphDB CLI");
     // TODO: Implement CLI
 }
-

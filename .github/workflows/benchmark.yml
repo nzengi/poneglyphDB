@@ -1,0 +1,43 @@
+name: Benchmark
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 0 * * 0" # Weekly
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+      - name: Install criterion dependencies
+        run: sudo apt-get update && sudo apt-get install -y libssl-dev pkg-config
+      - name: Install criterion-trend
+        run: cargo install criterion-trend
+      - name: Run benchmarks
+        run: cargo bench --workspace --all-features
+      - name: Track benchmark trends
+        run: criterion-trend --output-dir benchmark-trends/ || echo "No previous benchmarks to compare"
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: |
+            target/criterion/
+            benchmark-trends/
+          retention-days: 90
+          if-no-files-found: ignore

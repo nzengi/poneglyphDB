@@ -1,8 +1,5 @@
 //! Circuit builder framework
 
-use crate::circuit::types::*;
-use crate::error::Result;
-
 /// Circuit builder
 pub struct CircuitBuilder {
     // TODO: Implement circuit builder
@@ -20,4 +17,3 @@ impl Default for CircuitBuilder {
         Self::new()
     }
 }
-

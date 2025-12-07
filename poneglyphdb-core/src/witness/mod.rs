@@ -5,6 +5,5 @@ pub mod extractor;
 pub mod optimizer;
 pub mod types;
 
-pub use extractor::WitnessExtractor;
 pub use computer::WitnessComputer;
-
+pub use extractor::WitnessExtractor;

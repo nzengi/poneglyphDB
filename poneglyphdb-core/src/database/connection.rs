@@ -1,7 +1,5 @@
 //! Database connection pool
 
-use crate::error::Result;
-
 /// Database connection
 pub struct DatabaseConnection {
     // TODO: Implement database connection
@@ -14,3 +12,8 @@ impl DatabaseConnection {
     }
 }
 
+impl Default for DatabaseConnection {
+    fn default() -> Self {
+        Self::new()
+    }
+}

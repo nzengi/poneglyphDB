@@ -9,4 +9,3 @@ pub mod string;
 pub mod trait_;
 
 pub use trait_::CustomGate;
-

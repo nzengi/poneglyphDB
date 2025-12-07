@@ -2,4 +2,3 @@
 
 pub mod lookup;
 pub mod permutation;
-
