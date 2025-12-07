@@ -12,6 +12,11 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
+    # Ignore major version updates (breaking changes)
+    # Only update patch and minor versions
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
 
   # Enable version updates for GitHub Actions
   - package-ecosystem: "github-actions"
