@@ -33,7 +33,7 @@ jobs:
       - name: Track benchmark trends
         run: criterion-trend --output-dir benchmark-trends/ || echo "No previous benchmarks to compare"
       - name: Upload benchmark results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: benchmark-results
           path: |
