@@ -18,24 +18,24 @@ description = "Efficient Non-interactive Zero-Knowledge Proofs for Arbitrary SQL
 
 [workspace.dependencies]
 # ZKP Libraries
-halo2 = { version = "0.1.0-beta.2", package = "halo2_proofs" }
+halo2 = { version = "0.3.2", package = "halo2_proofs" }
 
 # Database
-sqlx = { version = "0.7", features = ["postgres", "runtime-tokio-rustls"] }
+sqlx = { version = "0.8", features = ["postgres", "runtime-tokio-rustls"] }
 
 # Web Framework
-axum = "0.7"
-tokio = { version = "1.35", features = ["full"] }
+axum = "0.8"
+tokio = { version = "1.48", features = ["full"] }
 
 # SQL Parser
-sqlparser = "0.39"
+sqlparser = "0.60"
 
 # Serialization
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 
 # Error Handling
-thiserror = "1.0"
+thiserror = "2.0"
 anyhow = "1.0"
 
 # Logging
@@ -43,10 +43,10 @@ tracing = "0.1"
 tracing-subscriber = "0.3"
 
 # HTTP Client
-reqwest = { version = "0.11", features = ["json"] }
+reqwest = { version = "0.12", features = ["json"] }
 
 # CLI
-clap = { version = "4.4", features = ["derive"] }
+clap = { version = "4.5", features = ["derive"] }
 
 
 [profile.dev]
