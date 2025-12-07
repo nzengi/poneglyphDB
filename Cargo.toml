@@ -24,7 +24,7 @@ halo2 = { version = "0.1.0-beta.2", package = "halo2_proofs" }
 sqlx = { version = "0.7", features = ["postgres", "runtime-tokio-rustls"] }
 
 # Web Framework
-axum = "0.7"
+axum = "0.8"
 tokio = { version = "1.35", features = ["full"] }
 
 # SQL Parser
