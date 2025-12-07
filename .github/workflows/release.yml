@@ -65,7 +65,7 @@ jobs:
           tar czf poneglyphdb-${{ steps.get_version.outputs.VERSION || steps.set_version.outputs.VERSION }}-linux-x86_64.tar.gz -C release . || true
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             poneglyphdb-*.tar.gz
