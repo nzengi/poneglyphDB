@@ -138,9 +138,23 @@ Contributions are welcome! Please read our [contributing guidelines](CONTRIBUTIN
 
 If you use PoneglyphDB in your research, please cite:
 
+**BibTeX:**
+```bibtex
+@article{gu2025poneglyphdb,
+  title={PoneglyphDB: Efficient Non-interactive Zero-Knowledge Proofs for Arbitrary SQL-Query Verification},
+  author={Gu, Binbin and Fang, Juncheng and Nawab, Faisal},
+  journal={Proceedings of the ACM on Management of Data},
+  volume={3},
+  number={1},
+  pages={1--27},
+  year={2025},
+  publisher={ACM New York, NY, USA}
+}
 ```
-PoneglyphDB: Efficient Non-interactive Zero-Knowledge Proofs for Arbitrary SQL-Query Verification
-https://arxiv.org/pdf/2411.15031
+
+**Plain Text:**
+```
+Gu, B., Fang, J., & Nawab, F. (2025). PoneglyphDB: Efficient Non-interactive Zero-Knowledge Proofs for Arbitrary SQL-Query Verification. Proceedings of the ACM on Management of Data, 3(1), 1-27.
 ```
 
 ## Acknowledgments

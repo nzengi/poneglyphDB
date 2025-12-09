@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "PoneglyphDB: Efficient Non-interactive Zero-Knowledge Proofs for Arbitrary SQL-Query Verification"
+version: 1.0.0
+date-released: 2025-01-01
+authors:
+  - given-names: Binbin
+    family-names: Gu
+  - given-names: Juncheng
+    family-names: Fang
+  - given-names: Faisal
+    family-names: Nawab
+preferred-citation:
+  type: article
+  title: "PoneglyphDB: Efficient Non-interactive Zero-Knowledge Proofs for Arbitrary SQL-Query Verification"
+  authors:
+    - given-names: Binbin
+      family-names: Gu
+    - given-names: Juncheng
+      family-names: Fang
+    - given-names: Faisal
+      family-names: Nawab
+  journal: "Proceedings of the ACM on Management of Data"
+  volume: 3
+  issue: 1
+  start: 1
+  end: 27
+  year: 2025
+  publisher: "ACM New York, NY, USA"
+  identifiers:
+    - type: doi
+      value: 10.1145/xxxxxxx
+    - type: arxiv
+      value: 2411.15031
+
