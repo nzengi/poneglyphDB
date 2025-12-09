@@ -8,5 +8,5 @@ pub mod operations;
 pub mod optimizer;
 pub mod types;
 
-pub use builder::CircuitBuilder;
+pub use builder::{BaseCircuit, CircuitBuilder, CircuitConfig};
 pub use types::{ConstraintId, Field, GateId, Wire};

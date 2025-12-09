@@ -19,6 +19,7 @@ description = "Efficient Non-interactive Zero-Knowledge Proofs for Arbitrary SQL
 [workspace.dependencies]
 # ZKP Libraries
 halo2 = { version = "0.3.2", package = "halo2_proofs" }
+ff = "0.13"
 
 # Database
 sqlx = { version = "0.8", features = ["postgres", "runtime-tokio-rustls"] }

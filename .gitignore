@@ -3,8 +3,6 @@ target/
 **/*.rs.bk
 *.pdb
 
-/project_info
-
 # Cargo
 Cargo.lock  # For libraries, but we keep it for workspace
 # Remove the line above if this is a library crate
