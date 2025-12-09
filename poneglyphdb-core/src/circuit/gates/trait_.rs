@@ -81,8 +81,8 @@ pub trait GateValidation: CustomGate {
     ///
     /// Returns `true` if the witness values are valid, `false` otherwise.
     fn validate_witness(&self, witness: &[Field]) -> bool {
-        use halo2::arithmetic::Field as _;
-        self.evaluate_constraint(witness) == Field::zero()
+        use ff::Field;
+        self.evaluate_constraint(witness) == Field::ZERO
     }
 
     /// Get constraint description as a string
@@ -184,10 +184,9 @@ mod tests {
         }
 
         fn evaluate_constraint(&self, witness: &[Field]) -> Field {
-            use halo2::arithmetic::Field as _;
             // Simple test constraint: sum of inputs should equal first input
             if witness.len() < 2 {
-                return Field::one(); // Invalid
+                return Field::ONE; // Invalid
             }
             witness[0] - witness[0] // Always zero for testing
         }

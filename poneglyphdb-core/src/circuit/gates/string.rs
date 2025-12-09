@@ -14,6 +14,7 @@ use halo2::{
     arithmetic::Field as _,
     circuit::{AssignedCell, Layouter, Value},
     plonk::{Advice, Column, ConstraintSystem, Error, Expression, Selector},
+    poly::Rotation,
 };
 
 // ============================================================================
@@ -144,8 +145,27 @@ impl StringEqualityConfig {
 
         meta.create_gate("string_equality", |meta| {
             let s = meta.query_selector(selector);
-            // Equality is computed in witness
-            vec![s * Expression::Constant(Field::ZERO)]
+            let is_equal_result = meta.query_advice(advice[0], Rotation(max_length as i32));
+
+            let mut constraints = vec![];
+
+            // 1. Output must be boolean (0 or 1)
+            let one = Expression::Constant(Field::ONE);
+            constraints.push(
+                s.clone() * is_equal_result.clone() * (one.clone() - is_equal_result.clone()),
+            );
+
+            // 2. If is_equal is 1, then ALL characters must be equal.
+            // Constraint: is_equal * (c1 - c2) = 0
+            // If is_equal is 1, then (c1 - c2) must be 0 (c1 == c2).
+            // If is_equal is 0, then (c1 - c2) can be anything.
+            for i in 0..max_length {
+                let c1 = meta.query_advice(advice[0], Rotation(i as i32));
+                let c2 = meta.query_advice(advice[1], Rotation(i as i32));
+                constraints.push(s.clone() * is_equal_result.clone() * (c1 - c2));
+            }
+
+            constraints
         });
 
         Self {

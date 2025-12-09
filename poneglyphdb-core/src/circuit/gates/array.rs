@@ -11,11 +11,13 @@
 //! - Array Filtering: Filter elements based on condition
 //! - Array Aggregation: SUM, COUNT, AVG, MAX, MIN operations
 
+use crate::circuit::lookup::table::{LookupTableConfig, MultiColLookupTableConfig};
 use crate::circuit::types::Field;
 use halo2::{
     arithmetic::Field as _,
     circuit::{AssignedCell, Layouter, Value},
     plonk::{Advice, Column, ConstraintSystem, Error, Expression, Selector},
+    poly::Rotation,
 };
 
 // ============================================================================
@@ -39,17 +41,45 @@ pub struct ArrayIndexingConfig {
     pub selector: Selector,
     /// Maximum array length
     pub max_length: usize,
+    /// Lookup table for range check
+    pub range_table: LookupTableConfig,
+    /// Lookup table for array access (index -> value)
+    pub access_table: MultiColLookupTableConfig<2>,
 }
 
 impl ArrayIndexingConfig {
     /// Configure the Array Indexing gate
     pub fn configure(meta: &mut ConstraintSystem<Field>, max_length: usize) -> Self {
+        // We need 3 columns: array elements, index, and boolean indicators (one-hot)
         let advice = [meta.advice_column(), meta.advice_column()];
-        let selector = meta.selector();
+        let selector = meta.complex_selector();
+
+        let range_table = LookupTableConfig::configure(meta);
+        let access_table = MultiColLookupTableConfig::<2>::configure(meta);
 
         meta.enable_equality(advice[0]);
         meta.enable_equality(advice[1]);
 
+        // 1. Index Range Check
+        meta.lookup(|meta| {
+            let s = meta.query_selector(selector);
+            let index = meta.query_advice(advice[1], Rotation::cur());
+            vec![(s * index, range_table.column)]
+        });
+
+        // 2. Element Access Check
+        meta.lookup(|meta| {
+            let s = meta.query_selector(selector);
+            let index = meta.query_advice(advice[1], Rotation::cur());
+            let element = meta.query_advice(advice[1], Rotation::next());
+
+            vec![
+                (s.clone() * index, access_table.columns[0]),
+                (s * element, access_table.columns[1]),
+            ]
+        });
+
+        // Gate is effectively just enabling lookups now
         meta.create_gate("array_indexing", |meta| {
             let s = meta.query_selector(selector);
             vec![s * Expression::Constant(Field::ZERO)]
@@ -59,6 +89,8 @@ impl ArrayIndexingConfig {
             advice,
             selector,
             max_length,
+            range_table,
+            access_table,
         }
     }
 
@@ -71,12 +103,26 @@ impl ArrayIndexingConfig {
         array: &[Field],
         index: Field,
     ) -> Result<AssignedCell<Field, Field>, Error> {
+        // 1. Load valid indices into range_table (0..max_length)
+        let indices: Vec<Field> = (0..self.max_length).map(|i| Field::from(i as u64)).collect();
+        self.range_table.load(layouter.namespace(|| "load_range_table"), &indices)?;
+
+        // 2. Load (index, value) pairs into access_table
+        // This makes the array content available for lookup verification
+        for (i, &val) in array.iter().enumerate().take(self.max_length) {
+            self.access_table.load(
+                layouter.namespace(|| format!("load_access_table_{}", i)),
+                &[[Field::from(i as u64), val]],
+            )?;
+        }
+
         layouter.assign_region(
             || "array_indexing",
             |mut region| {
+                // Enable selector at offset 0 (where 'index' is)
                 self.selector.enable(&mut region, 0)?;
 
-                // Convert index to usize (for known values)
+                // Convert index to usize (for known values logic)
                 let index_usize = {
                     use ff::PrimeField;
                     let repr = index.to_repr();
@@ -85,7 +131,7 @@ impl ArrayIndexingConfig {
                     u64::from_le_bytes(arr) as usize
                 };
 
-                // Assign array elements
+                // Assign array elements (just for visibility/witness, not used in constraint directly anymore)
                 for (i, &elem) in array.iter().enumerate().take(self.max_length) {
                     region.assign_advice(
                         || format!("array_elem_{}", i),
@@ -95,16 +141,17 @@ impl ArrayIndexingConfig {
                     )?;
                 }
 
-                // Assign index
+                // Assign index at offset 0
                 region.assign_advice(|| "index", self.advice[1], 0, || Value::known(index))?;
 
-                // Get element at index (with bounds check)
+                // Get element at index (with bounds check logic for Rust side)
                 let element = if index_usize < array.len().min(self.max_length) {
                     array[index_usize]
                 } else {
-                    Field::ZERO
+                    Field::ZERO // Should be constrained by range_table to not happen, but safe fallback
                 };
 
+                // Assign element at offset 1 (Rotation::next)
                 let element_cell = region.assign_advice(
                     || "element",
                     self.advice[1],

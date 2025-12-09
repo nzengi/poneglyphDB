@@ -13,6 +13,8 @@ categories = ["cryptography", "database", "algorithms"]
 
 [dependencies]
 halo2 = { workspace = true }
+# TODO: Add halo2_gadgets when Poseidon API is fully integrated
+# halo2_gadgets = { version = "0.3.1" }
 ff = { workspace = true }
 sqlx = { workspace = true }
 sqlparser = { workspace = true }
